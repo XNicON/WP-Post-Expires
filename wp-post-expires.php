@@ -55,24 +55,7 @@ class XN_WP_Post_Expires {
 		$screen = get_current_screen();
 
 		if(array_key_exists($screen->post_type, $this->settings['post_types'])){
-
-			if($this->settings['cats_type'] == 'disabled' || empty($this->settings['cats'])){
-				add_action('post_submitbox_misc_actions', array($this, 'xn_wppe_add_box_fields'));
-
-			}elseif($this->settings['cats_type'] != 'disabled' && !empty($this->settings['cats'])){
-
-				$cats_trim = str_replace(' ', '', $this->settings['cats']);
-				$cats      = explode(',', $cats_trim);
-
-				// TODO: Fix check category
-				//var_dump(get_queried_object()->term_id);
-				if($this->settings['cats_type'] == 'include' && in_array(get_queried_object()->term_id, $cats)){
-					add_action('post_submitbox_misc_actions', array($this, 'xn_wppe_add_box_fields'));
-
-				}elseif($this->settings['cats_type'] == 'exclude' && !in_array(get_queried_object()->term_id, $cats)){
-					add_action('post_submitbox_misc_actions', array($this, 'xn_wppe_add_box_fields'));
-				}
-			}
+			add_action('post_submitbox_misc_actions', array($this, 'xn_wppe_add_box_fields'));
 		}
 	}
 
@@ -162,7 +145,6 @@ class XN_WP_Post_Expires {
 
 		add_settings_field('xn_wppe_settings_posttype', __('Supported post types', 'xn-wppe'), array($this, 'xn_wppe_settings_field_posttype'), 'reading', "xn_wppe_section");
 		add_settings_field('xn_wppe_settings_prefix', __('Default Expired Item Prefix', 'xn-wppe'), array($this, 'xn_wppe_settings_field_prefix'), 'reading', "xn_wppe_section");
-		add_settings_field('xn_wppe_settings_cats_type', __('Include/Exclude Categories', 'xn-wppe'), array($this, 'xn_wppe_settings_field_cats_type'), 'reading', "xn_wppe_section");
 	}
 
 	public function xn_wppe_settings_field_posttype() {
@@ -182,16 +164,6 @@ class XN_WP_Post_Expires {
 	public function xn_wppe_settings_field_prefix() {
 		echo '<input id="xn_wppe_settings_prefix" type="text" name="xn_wppe_settings[prefix]" value="'.$this->settings['prefix'].'" class="regular-text">';
 		echo '<p class="description">'.__('Enter the text you would like prepended to expired items.', 'pw-spe').'</p>';
-	}
-
-	public function xn_wppe_settings_field_cats_type() {
-		echo '<fieldset>';
-			echo '<label><input type="radio" name="xn_wppe_settings[cats_type]" value="disabled"'.($this->settings['cats_type'] == 'disabled'?' checked':'').'> '.__('Disabled', 'xn-wppe').'</label><br>';
-			echo '<label><input type="radio" name="xn_wppe_settings[cats_type]" value="include"'.($this->settings['cats_type'] == 'include'?' checked':'').'> '.__('Include only', 'xn-wppe').'</label><br>';
-			echo '<label><input type="radio" name="xn_wppe_settings[cats_type]" value="exclude"'.($this->settings['cats_type'] == 'exclude'?' checked':'').'> '.__('Exclude', 'xn-wppe').'</label><br>';
-		echo '</fieldset>';
-		echo '<p><input class="regular-text" type="text" name="xn_wppe_settings[cats]" value="'.$this->settings['cats'].'" placeholder="'.__('Include/Exclude Categories','xn-wppe').'"></p>';
-		echo '<p class="description">'.__('Check Include/Exclude and set category/term ids of comma separate','xn-wppe').'</p>';
 	}
 
 	public function xn_wppe_scripts() {
@@ -216,14 +188,6 @@ class XN_WP_Post_Expires {
 			$settings_load['prefix'] = __('Expired:', 'xn-wppe');
 		}else{
 			$settings_load['prefix'] = esc_attr($settings_load['prefix']);
-		}
-
-		if(!isset($settings_load['cats_type']) || empty($settings_load['cats_type'])) {
-			$settings_load['cats_type'] = 'disabled';
-		}
-
-		if(!isset($settings_load['cats'])) {
-			$settings_load['cats'] = '';
 		}
 
 		return $settings_load;
