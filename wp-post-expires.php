@@ -65,12 +65,13 @@ class XN_WP_Post_Expires {
 
 		if(!empty($post->ID)) {
 			$expires        = get_post_meta($post->ID, 'xn-wppe-expiration', true);
-			$expires_sction = get_post_meta($post->ID, 'xn-wppe-expiration-action', true);
+			$expires_select = get_post_meta($post->ID, 'xn-wppe-expiration-action', true);
 			$expires_prefix = get_post_meta($post->ID, 'xn-wppe-expiration-prefix', true);
 		}
 
 		$label  = !empty($expires)? date_i18n('Y-n-d h:i', strtotime($expires)) : __('never', 'xn-wppe');
 		$date   = !empty($expires)? date_i18n('Y-n-d h:i', strtotime($expires)) : '';
+		$select = !empty($expires_select)? $expires_select : $this->settings['action'];
 		$prefix = !empty($expires_prefix)? esc_attr($expires_prefix) : $this->settings['prefix'];
 	?>
 		<div id="xn-wppe" class="misc-pub-section">
@@ -91,14 +92,14 @@ class XN_WP_Post_Expires {
 				<p>
 					<label for="xn-wppe-action-end"><?php _e('Action:', 'xn-wppe'); ?></label>
 					<select name="xn-wppe-expiration-action" id="xn-wppe-action-end">
-						<option <?php echo $expires_sction=='add_text'?'selected':'';?> value="add_text"><?php _e('Add Text', 'xn-wppe'); ?></option>
-						<option <?php echo $expires_sction=='to_drafts'?'selected':'';?> value="to_drafts"><?php _e('Move to drafts', 'xn-wppe'); ?></option>
-						<option <?php echo $expires_sction=='to_trash'?'selected':'';?> value="to_trash"><?php _e('Move to trash', 'xn-wppe'); ?></option>
+						<option <?php echo $select=='add_prefix'?'selected':'';?> value="add_prefix"><?php _e('Add Prefix', 'xn-wppe'); ?></option>
+						<option <?php echo $select=='to_drafts'?'selected':'';?> value="to_drafts"><?php _e('Move to drafts', 'xn-wppe'); ?></option>
+						<option <?php echo $select=='to_trash'?'selected':'';?> value="to_trash"><?php _e('Move to trash', 'xn-wppe'); ?></option>
 					</select>
 				</p>
 				<p id="xn-wppe-select-add-text">
-					<label for="xn-wppe-add-text"><?php _e('Text:', 'xn-wppe'); ?></label>
-					<input type="text" name="xn-wppe-expiration-prefix" id="xn-wppe-add-text" value="<?php echo $prefix; ?>" placeholder="<?php _e('Prefix for post title', 'xn-wppe'); ?>">
+					<label for="xn-wppe-add-prefix"><?php _e('Prefix:', 'xn-wppe'); ?></label>
+					<input type="text" name="xn-wppe-expiration-prefix" id="xn-wppe-add-prefix" value="<?php echo $prefix; ?>" placeholder="<?php _e('Prefix for post title', 'xn-wppe'); ?>">
 				</p>
 				<p>
 					<a href="#" class="xn-wppe-hide-expiration button secondary"><?php _e('OK', 'xn-wppe'); ?></a>
@@ -121,14 +122,14 @@ class XN_WP_Post_Expires {
 
 		$expiration  = !empty($_POST['xn-wppe-expiration'])?        sanitize_text_field($_POST['xn-wppe-expiration'])        : false;
 		$action_type = !empty($_POST['xn-wppe-expiration-action'])? sanitize_text_field($_POST['xn-wppe-expiration-action']) : false;
-		$add_text    = !empty($_POST['xn-wppe-expiration-prefix'])? sanitize_text_field($_POST['xn-wppe-expiration-prefix']) : false;
+		$add_prefix  = !empty($_POST['xn-wppe-expiration-prefix'])? sanitize_text_field($_POST['xn-wppe-expiration-prefix']) : false;
 
 		if($expiration && $action_type) {
 			update_post_meta($post_id, 'xn-wppe-expiration', $expiration);
 			update_post_meta($post_id, 'xn-wppe-expiration-action', $action_type);
 
-			if($add_text) {
-				update_post_meta($post_id, 'xn-wppe-expiration-prefix', $add_text);
+			if($add_prefix) {
+				update_post_meta($post_id, 'xn-wppe-expiration-prefix', $add_prefix);
 			}
 		}else{
 			delete_post_meta($post_id, 'xn-wppe-expiration');
@@ -144,6 +145,7 @@ class XN_WP_Post_Expires {
 		add_settings_section("xn_wppe_section", __('Настройки срока давности записей', 'xn-wppe'), null, 'reading');
 
 		add_settings_field('xn_wppe_settings_posttype', __('Supported post types', 'xn-wppe'), array($this, 'xn_wppe_settings_field_posttype'), 'reading', "xn_wppe_section");
+		add_settings_field('xn_wppe_settings_action', __('Action by default', 'xn-wppe'), array($this, 'xn_wppe_settings_field_action'), 'reading', "xn_wppe_section");
 		add_settings_field('xn_wppe_settings_prefix', __('Default Expired Item Prefix', 'xn-wppe'), array($this, 'xn_wppe_settings_field_prefix'), 'reading', "xn_wppe_section");
 	}
 
@@ -161,27 +163,53 @@ class XN_WP_Post_Expires {
 		}
 	}
 
+	public function xn_wppe_settings_field_action() {
+		echo '<select name="xn_wppe_settings[action]" id="xn_wppe_settings_action">';
+			echo '<option '.($this->settings['action']=='add_prefix'?'selected':'').' value="add_prefix">'.__('Add Prefix', 'xn-wppe').'</option>';
+			echo '<option '.($this->settings['action']=='to_drafts'?'selected':'').' value="to_drafts">'.__('Move to drafts', 'xn-wppe').'</option>';
+			echo '<option '.($this->settings['action']=='to_trash'?'selected':'').' value="to_trash">'.__('Move to trash', 'xn-wppe').'</option>';
+		echo '</select>';
+	}
+
 	public function xn_wppe_settings_field_prefix() {
 		echo '<input id="xn_wppe_settings_prefix" type="text" name="xn_wppe_settings[prefix]" value="'.$this->settings['prefix'].'" class="regular-text">';
 		echo '<p class="description">'.__('Enter the text you would like prepended to expired items.', 'pw-spe').'</p>';
 	}
 
 	public function xn_wppe_scripts() {
-		wp_enqueue_style('datatimepicker-css', $this->url_assets.'css/datepicker.min.css');
-		wp_enqueue_script('datatimepicker-js', $this->url_assets.'js/datepicker.min.js', array('jquery'));
-		wp_enqueue_script('xn-wppe-plugin-js', $this->url_assets.'js/plugin-scripts.js', array('datatimepicker-js'));
+		$wplang = explode('-', get_bloginfo('language'));
+		$supported = array('cs', 'da', 'de', 'es', 'fi', 'fr', 'hu', 'nl', 'pl', 'pt','ro','zh');
+
+		$dtplang = 'en';
+		if($wplang = 'ru'){
+			$dtplang = false;
+		}elseif(in_array($wplang[0], $supported)){
+			$dtplang = $wplang[0];
+		}
+
+		wp_enqueue_style('dtpicker-css', $this->url_assets.'css/datepicker.min.css');
+
+		wp_enqueue_script('xn-wppe-plugin-js', $this->url_assets.'js/plugin-scripts.js', array('dtpicker-js'));
+		wp_enqueue_script('dtpicker-js', $this->url_assets.'js/datepicker.min.js', array('jquery'));
+		if($dtplang != false){
+			wp_enqueue_script('dtpicker-lang-js', $this->url_assets.'js/i18n/datepicker.'.$dtplang.'.js', array('jquery','dtpicker-js'));
+		}
 	}
 
 	private function load_settings() {
 		$settings_load = get_option('xn_wppe_settings');
 
-		if (empty($settings_load) || !is_array($settings_load)) {
+		if(empty($settings_load) || !is_array($settings_load)) {
 			$settings_load = array();
 		}
 
 		if(!isset($settings_load['post_types'])) {
 			$settings_load['post_types']['post'] = 1;
 			$settings_load['post_types']['page'] = 1;
+		}
+
+		if(!isset($settings_load['action'])) {
+			$this->settings['action'] = 'add_prefix';
 		}
 
 		if(!isset($settings_load['prefix'])) {

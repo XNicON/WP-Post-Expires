@@ -8,12 +8,14 @@ jQuery(function($){
 	var datetimeField    = $('#xn-wppe-datetime');
 	var datetimePreview  = $('#xn-wppe-currentsetdt');
 	var prevDatetime     = datetimeField.val();
+	var langs            = $.fn.datepicker.language;
 	var datetimepicker = datetimeField.datepicker({
 		minDate: new Date(),
 		dateFormat: 'yyyy-mm-dd',
 		timepicker: true,
 		timeFormat:'hh:ii',
 		position: "bottom right",
+		language: langs[Object.keys(langs)[Object.keys(langs).length - 1]]
 	}).data('datepicker');
 
 	if($(window).width() < 768 ){
