@@ -90,14 +90,14 @@ class XN_WP_Post_Expires {
 					<input type="text" name="xn-wppe-expiration" id="xn-wppe-datetime" value="<?php echo $date; ?>" placeholder="<?php _e('yyyy-mm-dd h:i','xn-wppe'); ?>">
 				</p>
 				<p>
-					<label for="xn-wppe-action-end"><?php _e('Action:', 'xn-wppe'); ?></label>
-					<select name="xn-wppe-expiration-action" id="xn-wppe-action-end">
+					<label for="xn-wppe-select-action"><?php _e('Action:', 'xn-wppe'); ?></label>
+					<select name="xn-wppe-expiration-action" id="xn-wppe-select-action">
 						<option <?php echo $select=='add_prefix'?'selected':'';?> value="add_prefix"><?php _e('Add Prefix', 'xn-wppe'); ?></option>
 						<option <?php echo $select=='to_drafts'?'selected':'';?> value="to_drafts"><?php _e('Move to drafts', 'xn-wppe'); ?></option>
 						<option <?php echo $select=='to_trash'?'selected':'';?> value="to_trash"><?php _e('Move to trash', 'xn-wppe'); ?></option>
 					</select>
 				</p>
-				<p id="xn-wppe-select-add-text">
+				<p id="xn-wppe-add-prefix-wrap">
 					<label for="xn-wppe-add-prefix"><?php _e('Prefix:', 'xn-wppe'); ?></label>
 					<input type="text" name="xn-wppe-expiration-prefix" id="xn-wppe-add-prefix" value="<?php echo $prefix; ?>" placeholder="<?php _e('Prefix for post title', 'xn-wppe'); ?>">
 				</p>

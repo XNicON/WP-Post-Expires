@@ -1,7 +1,7 @@
 jQuery(function($){
-	var selectField      = $('#xn-wppe-action-end');
-	var addTextFieldWrap = $('#xn-wppe-select-add-text');
-	var addTextField     = $('#xn-wppe-add-text');
+	var selectField      = $('#xn-wppe-select-action');
+	var addTextFieldWrap = $('#xn-wppe-add-prefix-wrap');
+	var addTextField     = $('#xn-wppe-add-prefix');
 	var editBtn          = $('#xn-wppe-edit');
 	var hideBtn          = $('.xn-wppe-hide-expiration');
 	var allFields        = $('#xn-wppe-fields');
@@ -22,13 +22,13 @@ jQuery(function($){
 		datetimepicker.update('position','bottom left');
 	}
 
-	if(selectField.val() != 'add_text'){
+	if(selectField.val() != 'add_prefix'){
 		addTextFieldWrap.slideUp();
 		addTextFieldWrap.prop('disabled',true);
 	}
 
 	selectField.on('change',function(){
-		if($(this).val() == 'add_text'){
+		if($(this).val() == 'add_prefix'){
 			addTextFieldWrap.slideDown('fast');
 			addTextField.prop('disabled',false);
 		}else{
