@@ -142,7 +142,7 @@ class XN_WP_Post_Expires {
 
 		register_setting('reading', 'xn_wppe_settings');
 
-		add_settings_section("xn_wppe_section", __('Настройки срока давности записей', 'xn-wppe'), null, 'reading');
+		add_settings_section("xn_wppe_section", __('Setting a Statute of limitations posts', 'xn-wppe'), null, 'reading');
 
 		add_settings_field('xn_wppe_settings_posttype', __('Supported post types', 'xn-wppe'), array($this, 'xn_wppe_settings_field_posttype'), 'reading', "xn_wppe_section");
 		add_settings_field('xn_wppe_settings_action', __('Action by default', 'xn-wppe'), array($this, 'xn_wppe_settings_field_action'), 'reading', "xn_wppe_section");

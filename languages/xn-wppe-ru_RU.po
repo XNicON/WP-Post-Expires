@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Post Expires\n"
-"POT-Creation-Date: 2016-08-06 21:05+0300\n"
-"PO-Revision-Date: 2016-08-06 21:08+0300\n"
+"POT-Creation-Date: 2016-08-11 23:11+0300\n"
+"PO-Revision-Date: 2016-08-11 23:15+0300\n"
 "Last-Translator: X-NicON <x-icon@ya.ru>\n"
 "Language-Team: X-NicON <x-icon@ya.ru>\n"
 "Language: ru\n"
@@ -17,62 +17,91 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: wp-post-expires.php:52 wp-post-expires.php:60
+#: wp-post-expires.php:72 wp-post-expires.php:81
 msgid "never"
 msgstr "никогда"
 
-#: wp-post-expires.php:59
+#: wp-post-expires.php:80
 msgid "Expires:"
 msgstr "Заканчивается:"
 
-#: wp-post-expires.php:63
+#: wp-post-expires.php:84
 msgid "Edit"
 msgstr "Изменить"
 
-#: wp-post-expires.php:64
+#: wp-post-expires.php:85
 msgid "Edit date and time"
 msgstr "Изменить дату и время"
 
-#: wp-post-expires.php:69
+#: wp-post-expires.php:89
 msgid "DateTime:"
 msgstr "Дата и время:"
 
-#: wp-post-expires.php:70
+#: wp-post-expires.php:90
 msgid "yyyy-mm-dd h:i"
 msgstr "гггг-мм-дд ч:м"
 
-#: wp-post-expires.php:73
+#: wp-post-expires.php:93
 msgid "Action:"
 msgstr "Выполнить:"
 
-#: wp-post-expires.php:75
-msgid "Add Text"
+#: wp-post-expires.php:95 wp-post-expires.php:168
+msgid "Add Prefix"
 msgstr "Добавить текст"
 
-#: wp-post-expires.php:76
+#: wp-post-expires.php:96 wp-post-expires.php:169
 msgid "Move to drafts"
 msgstr "В черновики"
 
-#: wp-post-expires.php:77
+#: wp-post-expires.php:97 wp-post-expires.php:170
 msgid "Move to trash"
 msgstr "В корзину"
 
-#: wp-post-expires.php:81
-msgid "Text:"
+#: wp-post-expires.php:101
+msgid "Prefix:"
 msgstr "Текст:"
 
-#: wp-post-expires.php:82
-msgid "Expired:"
-msgstr "Истекла:"
+#: wp-post-expires.php:102
+msgid "Prefix for post title"
+msgstr "Текст в заголовке записи"
 
-#: wp-post-expires.php:82
-msgid "Text add to post title"
-msgstr "Добавить текст в заголовок"
-
-#: wp-post-expires.php:85
+#: wp-post-expires.php:105
 msgid "OK"
 msgstr "Ок"
 
-#: wp-post-expires.php:86
+#: wp-post-expires.php:106
 msgid "Cancel"
 msgstr "Отмена"
+
+#: wp-post-expires.php:145
+msgid "Setting a Statute of limitations posts"
+msgstr "Настройки срока давности записей"
+
+#: wp-post-expires.php:147
+msgid "Supported post types"
+msgstr "Добавить в типы записей"
+
+#: wp-post-expires.php:148
+msgid "Action by default"
+msgstr "Действие по умолчанию"
+
+#: wp-post-expires.php:149
+msgid "Default Expired Item Prefix"
+msgstr "Текст по умолчанию для записей со истёкшем сроком"
+
+#: wp-post-expires.php:176
+msgid "Enter the text you would like prepended to expired items."
+msgstr ""
+
+#: wp-post-expires.php:216
+msgid "Expired:"
+msgstr "Истекла:"
+
+#~ msgid "Add Text"
+#~ msgstr "Добавить текст"
+
+#~ msgid "Text:"
+#~ msgstr "Текст:"
+
+#~ msgid "Text add to post title"
+#~ msgstr "Добавить текст в заголовок"
