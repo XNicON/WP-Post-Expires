@@ -5,16 +5,16 @@ Requires at least: 3.0
 Tested up to: 4.5.3
 License: GPL2
 
-A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", \"Move to trash\".
+A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
 
 == Description ==
-A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", \"Move to trash\".
+A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
 
 Features:
-* Set post expire date and time
+* Set post expires date and time
 * Use for custom post type (post and pages by default)
-* How to expire post: move to drafts, trash or add \"Expired\" text for title
-* Adds class \"post-expired\" for post expired on site and admin interface
+* Action for expired posts: move to drafts, move to trash or add custom prefix for title
+* Adds class "post-expired" for post expired on site and admin interface (for custom styles in theme)
 
 Use in theme:
 
