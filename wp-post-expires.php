@@ -78,7 +78,7 @@ class XN_WP_Post_Expires {
 		$supported = array('cs', 'da', 'de', 'es', 'fi', 'fr', 'hu', 'nl', 'pl', 'pt','ro','zh');
 		$dtplang	 = 'en';
 
-		if($wplang = 'ru'){
+		if($wplang == 'ru'){
 			$dtplang = false;
 		}elseif(in_array($wplang[0], $supported)){
 			$dtplang = $wplang[0];
