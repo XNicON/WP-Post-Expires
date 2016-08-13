@@ -1,12 +1,13 @@
 <?php
 /*
 Plugin Name: WP Post Expires
-Plugin URI:  http://wordpress.org
-Description: A simple plugin that allows you to set an expiration date on posts. Once a post is expired, "Expired" will be prefixed to the post title. Or move to trash or drafts.
+Description: A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
 Version:     1.0
 Author:      X-NicON
 Author URI:  http://xnicon.ru
 License:     GPL2
+Text Domain: xn-wppe
+Domain Path: /languages
 
 Copyright 2016  X-NicON  (x-icon@ya.ru)
 

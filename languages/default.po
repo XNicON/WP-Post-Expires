@@ -15,6 +15,17 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: wp-post-expires.php\n"
 
+#: wp-post-expires.php:4
+msgid ""
+"A simple plugin allow to set the posts, the time after which will be "
+"performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", "
+"\"Move to trash\"."
+msgstr ""
+
+#: wp-post-expires.php:4
+msgid "A simple plugin allowing you to set the time-expired posts and to execute the action \"Add prefix\".\"Move to drafts\", \"move to trash\"."
+msgstr ""
+
 #: wp-post-expires.php:67
 msgid "Expired:"
 msgstr ""
