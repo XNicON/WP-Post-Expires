@@ -24,7 +24,7 @@ jQuery(function($){
 
 	if(selectField.val() != 'add_prefix'){
 		addTextFieldWrap.slideUp();
-		addTextFieldWrap.prop('disabled',true);
+		addTextField.prop('disabled',true);
 	}
 
 	selectField.on('change',function(){
