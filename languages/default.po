@@ -87,7 +87,7 @@ msgid "Cancel"
 msgstr ""
 
 #: wp-post-expires.php:182
-msgid "Setting a Statute of limitations posts"
+msgid "Settings posts expires"
 msgstr ""
 
 #: wp-post-expires.php:184

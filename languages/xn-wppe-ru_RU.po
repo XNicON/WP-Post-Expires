@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Post Expires\n"
 "POT-Creation-Date: 2016-08-13 19:41+0300\n"
-"PO-Revision-Date: 2016-08-13 21:06+0300\n"
+"PO-Revision-Date: 2016-08-13 21:44+0300\n"
 "Last-Translator: X-NicON <x-icon@ya.ru>\n"
 "Language-Team: X-NicON <x-icon@ya.ru>\n"
 "Language: ru\n"
@@ -88,8 +88,8 @@ msgid "Cancel"
 msgstr "Отмена"
 
 #: wp-post-expires.php:182
-msgid "Setting a Statute of limitations posts"
-msgstr "Настройки срока давности записей"
+msgid "Settings posts expires"
+msgstr "Настройки действий для истёкших записей"
 
 #: wp-post-expires.php:184
 msgid "Supported post types"
@@ -101,7 +101,7 @@ msgstr "Действие по умолчанию"
 
 #: wp-post-expires.php:186
 msgid "Default Expired Item Prefix"
-msgstr "Текст по умолчанию для записей со истёкшем сроком"
+msgstr "Текст по умолчанию для записей с истёкшим сроком"
 
 #: wp-post-expires.php:213
 msgid "Enter the text you would like prepended to expired items."
