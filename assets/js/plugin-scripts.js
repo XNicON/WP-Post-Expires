@@ -9,13 +9,15 @@ jQuery(function($){
 	var datetimePreview  = $('#xn-wppe-currentsetdt');
 	var prevDatetime     = datetimeField.val();
 	var langs            = $.fn.datepicker.language;
+	var setLang; for (setLang in langs); setLang;
+
 	var datetimepicker = datetimeField.datepicker({
 		minDate: new Date(),
 		dateFormat: 'yyyy-mm-dd',
 		timepicker: true,
 		timeFormat:'hh:ii',
 		position: "bottom right",
-		language: langs[Object.keys(langs)[Object.keys(langs).length - 1]]
+		language: setLang
 	}).data('datepicker');
 
 	if($(window).width() < 768 ){

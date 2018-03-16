@@ -1,0 +1,111 @@
+# Copyright (C) 2016 WP Post Expires
+# This file is distributed under the same license as the WP Post Expires package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Post Expires 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-post-"
+"expires\n"
+"POT-Creation-Date: 2017-05-05 15:58+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-05-05 16:21+0200\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it_IT\n"
+
+#: wp-post-expires.php:68
+msgid "Expired:"
+msgstr "Scaduto:"
+
+#: wp-post-expires.php:109 wp-post-expires.php:119
+msgid "never"
+msgstr "mai"
+
+#: wp-post-expires.php:118
+msgid "Expires:"
+msgstr "Scadenza:"
+
+#: wp-post-expires.php:122
+msgid "Edit"
+msgstr "Modifica"
+
+#: wp-post-expires.php:123
+msgid "Edit date and time"
+msgstr "Modifica la data e l’ora"
+
+#: wp-post-expires.php:127
+msgid "DateTime:"
+msgstr "Data:"
+
+#: wp-post-expires.php:128
+msgid "yyyy-mm-dd h:i"
+msgstr "aaaa-mm-gg h:m"
+
+#: wp-post-expires.php:131
+msgid "Action:"
+msgstr "Azione:"
+
+#: wp-post-expires.php:133 wp-post-expires.php:206
+msgid "Add Prefix"
+msgstr "Aggiungi prefisso"
+
+#: wp-post-expires.php:134 wp-post-expires.php:207
+msgid "Move to drafts"
+msgstr "Sposta nelle bozze"
+
+#: wp-post-expires.php:135 wp-post-expires.php:208
+msgid "Move to trash"
+msgstr "Sposta nel cestino"
+
+#: wp-post-expires.php:139
+msgid "Prefix:"
+msgstr "Prefisso:"
+
+#: wp-post-expires.php:140
+msgid "Prefix for post title"
+msgstr "Prefisso per il titolo del post"
+
+#: wp-post-expires.php:143
+msgid "OK"
+msgstr "OK"
+
+#: wp-post-expires.php:144
+msgid "Cancel"
+msgstr "Annulla"
+
+#: wp-post-expires.php:183
+msgid "Settings posts expires"
+msgstr "Scadenza dei post"
+
+#: wp-post-expires.php:185
+msgid "Supported post types"
+msgstr "Tipi di post supportati"
+
+#: wp-post-expires.php:186
+msgid "Action by default"
+msgstr "Azione di default"
+
+#: wp-post-expires.php:187
+msgid "Default Expired Item Prefix"
+msgstr "Prefisso di default per elementi scaduti"
+
+#: wp-post-expires.php:214
+msgid "Enter the text you would like prepended to expired items."
+msgstr "Immetti il testo che vuoi anteporre agli elementi scaduti."
+
+#. Plugin Name of the plugin/theme
+msgid "WP Post Expires"
+msgstr "WP Post Expires"
+
+#. Description of the plugin/theme
+msgid ""
+"A simple plugin allow to set the posts, the time after which will be "
+"performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", "
+"\"Move to trash\"."
+msgstr ""
+"Un semplice plugin per impostare la data di scadenza di un post, dopo la "
+"quale verrà eseguita una delle azioni seguenti: “Aggiungi prefisso al "
+"titolo”, “Sposta nelle bozze”, “Sposta nel cestino”."

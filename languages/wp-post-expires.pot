@@ -1,0 +1,104 @@
+# Copyright (C) 2016 WP Post Expires
+# This file is distributed under the same license as the WP Post Expires package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Post Expires 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-post-expires\n"
+"POT-Creation-Date: 2016-08-16 20:21:59+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wp-post-expires.php:68
+msgid "Expired:"
+msgstr ""
+
+#: wp-post-expires.php:109 wp-post-expires.php:119
+msgid "never"
+msgstr ""
+
+#: wp-post-expires.php:118
+msgid "Expires:"
+msgstr ""
+
+#: wp-post-expires.php:122
+msgid "Edit"
+msgstr ""
+
+#: wp-post-expires.php:123
+msgid "Edit date and time"
+msgstr ""
+
+#: wp-post-expires.php:127
+msgid "DateTime:"
+msgstr ""
+
+#: wp-post-expires.php:128
+msgid "yyyy-mm-dd h:i"
+msgstr ""
+
+#: wp-post-expires.php:131
+msgid "Action:"
+msgstr ""
+
+#: wp-post-expires.php:133 wp-post-expires.php:206
+msgid "Add Prefix"
+msgstr ""
+
+#: wp-post-expires.php:134 wp-post-expires.php:207
+msgid "Move to drafts"
+msgstr ""
+
+#: wp-post-expires.php:135 wp-post-expires.php:208
+msgid "Move to trash"
+msgstr ""
+
+#: wp-post-expires.php:139
+msgid "Prefix:"
+msgstr ""
+
+#: wp-post-expires.php:140
+msgid "Prefix for post title"
+msgstr ""
+
+#: wp-post-expires.php:143
+msgid "OK"
+msgstr ""
+
+#: wp-post-expires.php:144
+msgid "Cancel"
+msgstr ""
+
+#: wp-post-expires.php:183
+msgid "Settings posts expires"
+msgstr ""
+
+#: wp-post-expires.php:185
+msgid "Supported post types"
+msgstr ""
+
+#: wp-post-expires.php:186
+msgid "Action by default"
+msgstr ""
+
+#: wp-post-expires.php:187
+msgid "Default Expired Item Prefix"
+msgstr ""
+
+#: wp-post-expires.php:214
+msgid "Enter the text you would like prepended to expired items."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP Post Expires"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"A simple plugin allow to set the posts, the time after which will be "
+"performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", "
+"\"Move to trash\"."
+msgstr ""
