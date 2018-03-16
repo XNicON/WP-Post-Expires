@@ -1,63 +1,62 @@
 jQuery(function($){
-	var selectField      = $('#xn-wppe-select-action');
-	var addTextFieldWrap = $('#xn-wppe-add-prefix-wrap');
-	var addTextField     = $('#xn-wppe-add-prefix');
-	var editBtn          = $('#xn-wppe-edit');
-	var hideBtn          = $('.xn-wppe-hide-expiration');
-	var allFields        = $('#xn-wppe-fields');
-	var datetimeField    = $('#xn-wppe-datetime');
-	var datetimePreview  = $('#xn-wppe-currentsetdt');
-	var prevDatetime     = datetimeField.val();
-	var langs            = $.fn.datepicker.language;
-	var setLang; for (setLang in langs); setLang;
+	var xnSelectField      = $('#xn-wppe-select-action');
+	var xnAddTextFieldWrap = $('#xn-wppe-add-prefix-wrap');
+	var xnAddTextField     = $('#xn-wppe-add-prefix');
+	var xnEditBtn          = $('#xn-wppe-edit');
+	var xnHideBtn          = $('.xn-wppe-hide-expiration');
+	var xnAllFields        = $('#xn-wppe-fields');
+	var xnDatetimeField    = $('#xn-wppe-datetime');
+	var xnDatetimePreview  = $('#xn-wppe-currentsetdt');
+	var xnPrevDatetime     = xnDatetimeField.val();
+	var xnSetLang; for(xnSetLang in $.fn.datepicker.language); xnSetLang;
 
-	var datetimepicker = datetimeField.datepicker({
+	var xnDatetimepicker = xnDatetimeField.datepicker({
 		minDate: new Date(),
 		dateFormat: 'yyyy-mm-dd',
 		timepicker: true,
 		timeFormat:'hh:ii',
 		position: "bottom right",
-		language: setLang
+		language: xnSetLang
 	}).data('datepicker');
 
 	if($(window).width() < 768 ){
-		datetimepicker.update('position','bottom left');
+		xnDatetimepicker.update('position','bottom left');
 	}
 
-	if(selectField.val() != 'add_prefix'){
-		addTextFieldWrap.slideUp();
-		addTextField.prop('disabled',true);
+	if(xnSelectField.val() != 'add_prefix'){
+		xnAddTextFieldWrap.slideUp();
+		xnAddTextField.prop('disabled',true);
 	}
 
-	selectField.on('change',function(){
+	xnSelectField.bind('change',function(){
 		if($(this).val() == 'add_prefix'){
-			addTextFieldWrap.slideDown('fast');
-			addTextField.prop('disabled',false);
+			xnAddTextFieldWrap.slideDown('fast');
+			xnAddTextField.prop('disabled',false);
 		}else{
-			addTextFieldWrap.slideUp('fast');
-			addTextField.prop('disabled',true);
+			xnAddTextFieldWrap.slideUp('fast');
+			xnAddTextField.prop('disabled',true);
 		}
 	});
 
-	editBtn.on('click',function(e){
+	xnEditBtn.bind('click',function(e){
 		e.preventDefault();
-		editBtn.hide();
-		allFields.slideDown('fast');
+		xnEditBtn.hide();
+		xnAllFields.slideDown('fast');
 	});
 
-	hideBtn.on('click',function(e){
+	xnHideBtn.bind('click',function(e){
 		e.preventDefault();
-		editBtn.show();
-		allFields.slideUp('fast');
+		xnEditBtn.show();
+		xnAllFields.slideUp('fast');
 
 		if(!$(this).hasClass('cancel')){
-			if(datetimeField.val().length > 0){
-				datetimePreview.text(datetimeField.val());
+			if(xnDatetimeField.val().length > 0){
+				xnDatetimePreview.text(xnDatetimeField.val());
 			}else{
-				datetimePreview.text(datetimePreview.data('never'));
+				xnDatetimePreview.text(xnDatetimePreview.data('never'));
 			}
 		}else{
-			datetimeField.val(prevDatetime);
+			xnDatetimeField.val(xnPrevDatetime);
 		}
 	});
 });
