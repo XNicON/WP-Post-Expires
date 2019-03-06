@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-05-05 16:21+0200\n"
+"PO-Revision-Date: 2019-03-06 16:47+0300\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: it_IT\n"
@@ -25,8 +25,8 @@ msgid "never"
 msgstr "mai"
 
 #: wp-post-expires.php:118
-msgid "Expires:"
-msgstr "Scadenza:"
+msgid "Expires"
+msgstr "Scadenza"
 
 #: wp-post-expires.php:122
 msgid "Edit"
@@ -37,16 +37,16 @@ msgid "Edit date and time"
 msgstr "Modifica la data e l’ora"
 
 #: wp-post-expires.php:127
-msgid "DateTime:"
-msgstr "Data:"
+msgid "DateTime"
+msgstr "Data"
 
 #: wp-post-expires.php:128
 msgid "yyyy-mm-dd h:i"
 msgstr "aaaa-mm-gg h:m"
 
 #: wp-post-expires.php:131
-msgid "Action:"
-msgstr "Azione:"
+msgid "Action"
+msgstr "Azione"
 
 #: wp-post-expires.php:133 wp-post-expires.php:206
 msgid "Add Prefix"
@@ -61,8 +61,8 @@ msgid "Move to trash"
 msgstr "Sposta nel cestino"
 
 #: wp-post-expires.php:139
-msgid "Prefix:"
-msgstr "Prefisso:"
+msgid "Prefix"
+msgstr "Prefisso"
 
 #: wp-post-expires.php:140
 msgid "Prefix for post title"

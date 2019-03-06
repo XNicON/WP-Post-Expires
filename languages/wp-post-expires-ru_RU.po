@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Post Expires\n"
 "POT-Creation-Date: 2016-08-13 19:41+0300\n"
-"PO-Revision-Date: 2016-08-16 23:25+0300\n"
+"PO-Revision-Date: 2019-03-06 16:48+0300\n"
 "Last-Translator: X-NicON <x-icon@ya.ru>\n"
 "Language-Team: X-NicON <x-icon@ya.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__\n"
@@ -36,8 +36,8 @@ msgid "never"
 msgstr "никогда"
 
 #: wp-post-expires.php:117
-msgid "Expires:"
-msgstr "Заканчивается:"
+msgid "Expires"
+msgstr "Заканчивается"
 
 #: wp-post-expires.php:121
 msgid "Edit"
@@ -48,20 +48,20 @@ msgid "Edit date and time"
 msgstr "Изменить дату и время"
 
 #: wp-post-expires.php:126
-msgid "DateTime:"
-msgstr "Дата и время:"
+msgid "DateTime"
+msgstr "Дата и время"
 
 #: wp-post-expires.php:127
 msgid "yyyy-mm-dd h:i"
 msgstr "гггг-мм-дд ч:м"
 
 #: wp-post-expires.php:130
-msgid "Action:"
-msgstr "Выполнить:"
+msgid "Action"
+msgstr "Действие"
 
 #: wp-post-expires.php:132 wp-post-expires.php:205
 msgid "Add Prefix"
-msgstr "Добавить текст"
+msgstr "Добавить префикс"
 
 #: wp-post-expires.php:133 wp-post-expires.php:206
 msgid "Move to drafts"
@@ -72,8 +72,8 @@ msgid "Move to trash"
 msgstr "В корзину"
 
 #: wp-post-expires.php:138
-msgid "Prefix:"
-msgstr "Текст:"
+msgid "Prefix"
+msgstr "Префикс"
 
 #: wp-post-expires.php:139
 msgid "Prefix for post title"
@@ -108,12 +108,3 @@ msgid "Enter the text you would like prepended to expired items."
 msgstr ""
 "Введите текст, который будет добавляться в заголовок записей с истекшим "
 "сроком."
-
-#~ msgid "Add Text"
-#~ msgstr "Добавить текст"
-
-#~ msgid "Text:"
-#~ msgstr "Текст:"
-
-#~ msgid "Text add to post title"
-#~ msgstr "Добавить текст в заголовок"
