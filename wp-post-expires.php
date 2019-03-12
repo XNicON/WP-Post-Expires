@@ -49,7 +49,8 @@ class XNPostExpires {
         }
 
         if(current_user_can('edit_posts')) {
-            add_action('enqueue_block_editor_assets', [$this, 'loadScripts']);
+            add_action('admin_init', [$this, 'gutenbergOrClassic']);
+
             add_action('add_meta_boxes', [$this, 'addMetaBox']);
             add_action('save_post', [$this, 'saveBoxFields']);
         }
@@ -84,21 +85,23 @@ class XNPostExpires {
         return $settings_load;
     }
 
-    public function loadScripts() {
-        wp_enqueue_script('jquery-ui-core', ['jquery']);
-        wp_enqueue_script('jquery-ui-datepicker', ['jquery-ui-core', 'jquery']);
-        wp_enqueue_style('jquery-ui', 'https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.css', [], $this->plugin_version);
-        wp_enqueue_style('xn-dtpicker-skin', $this->url_assets.'css/latoja.datepicker.css', ['jquery-ui'], $this->plugin_version);
-        wp_enqueue_script('xn-plugin-js', $this->url_assets.'js/plugin-scripts.js', [
-            'jquery-ui-datepicker',
-            'wp-edit-post',
-            'wp-element',
-            'wp-components',
-            'wp-i18n'
-        ], $this->plugin_version);
+    public function gutenbergOrClassic() {
+        if(!is_plugin_active('classic-editor/classic-editor.php')) {
+            add_action('enqueue_block_editor_assets', [$this, 'loadScripts']);
+        } elseif(is_admin()) {
+            $this->loadScripts();
+        }
+    }
 
-        // TODO: i18n js
-        //wp_set_script_translations('xn-plugin-js', 'xn-wppe-expiration', dirname(plugin_basename( __FILE__ )) . '/languages');
+    public function loadScripts() {
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-datepicker');
+        wp_enqueue_script('xn-plugin-js', $this->url_assets.'js/plugin-scripts.js', ['jquery-ui-datepicker'], $this->plugin_version);
+
+        wp_enqueue_style('jquery-ui', 'https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.css', [], $this->plugin_version);
+        wp_enqueue_style('jquery-ui-dtpicker-skin', $this->url_assets.'css/latoja.datepicker.css', ['jquery-ui'], $this->plugin_version);
+
+        wp_set_script_translations('xn-plugin-js', 'xn-wppe-expiration', dirname(plugin_basename( __FILE__ )) . '/languages');
     }
 
     public function addMetaBox() {
@@ -107,7 +110,7 @@ class XNPostExpires {
             [$this, 'addBoxFields'],
             array_keys($this->settings['post_types']),
             'side',
-            'high',
+            'default',
             [
                 '__back_compat_meta_box' => false
             ]
