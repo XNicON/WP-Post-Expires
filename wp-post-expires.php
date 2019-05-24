@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Post Expires
 Description: A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
-Version:     1.2.2
+Version:     1.2.3
 Author:      XNicON
 Author URI:  https://xnicon.ru
 License:     GPL2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 class XNPostExpires {
-    private $plugin_version = '1.2.2';
+    private $plugin_version = '1.2.3';
     private $url_assets;
     public $settings = [];
 
@@ -89,19 +89,24 @@ class XNPostExpires {
         if(!is_plugin_active('classic-editor/classic-editor.php')) {
             add_action('enqueue_block_editor_assets', [$this, 'loadScripts']);
         } elseif(is_admin()) {
-            $this->loadScripts();
+            $this->loadScriptsClassic();
         }
     }
 
     public function loadScripts() {
+        wp_enqueue_script('xn-plugin-js', $this->url_assets.'js/plugin-scripts.js', ['wp-plugins', 'wp-i18n', 'wp-date'], $this->plugin_version);
+        wp_enqueue_style('xn-plugin-css', $this->url_assets.'css/plugin-style.css', [], $this->plugin_version);
+
+        wp_set_script_translations('xn-plugin-js', 'wp-post-expires', plugin_dir_path( __FILE__ ) . 'languages');
+    }
+
+    public function loadScriptsClassic() {
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-datepicker');
-        wp_enqueue_script('xn-plugin-js', $this->url_assets.'js/plugin-scripts.js', ['jquery-ui-datepicker'], $this->plugin_version);
+        wp_enqueue_script('xn-plugin-js', $this->url_assets.'js/plugin-scripts-classic.js', ['jquery-ui-datepicker'], $this->plugin_version);
 
         wp_enqueue_style('jquery-ui', 'https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.css', [], $this->plugin_version);
         wp_enqueue_style('jquery-ui-dtpicker-skin', $this->url_assets.'css/latoja.datepicker.css', ['jquery-ui'], $this->plugin_version);
-
-        wp_set_script_translations('xn-plugin-js', 'xn-wppe-expiration', dirname(plugin_basename( __FILE__ )) . '/languages');
     }
 
     public function addMetaBox() {
