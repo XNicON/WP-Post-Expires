@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Post Expires
 Description: A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
-Version:     1.2.1
+Version:     1.2.2
 Author:      XNicON
 Author URI:  https://xnicon.ru
 License:     GPL2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 class XNPostExpires {
-    private $plugin_version = '1.2.1';
+    private $plugin_version = '1.2.2';
     private $url_assets;
     public $settings = [];
 
