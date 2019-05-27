@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-05-27T10:25:36+03:00\n"
+"POT-Creation-Date: 2019-05-27T12:40:33+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: wp-post-expires\n"
@@ -18,47 +18,48 @@ msgstr ""
 msgid "A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: \"Add prefix to title\", \"Move to drafts\", \"Move to trash\"."
 msgstr ""
 
-#: wp-post-expires.php:80
-msgid "Expired:"
+#: wp-post-expires.php:81
+#: wp-post-expires.php:239
+msgid "Expired"
 msgstr ""
 
-#: wp-post-expires.php:114
+#: wp-post-expires.php:115
 #: assets/js/plugin-scripts.js:8
 msgid "Expires"
 msgstr ""
 
-#: wp-post-expires.php:144
+#: wp-post-expires.php:145
 msgid "DateTime"
 msgstr ""
 
-#: wp-post-expires.php:145
+#: wp-post-expires.php:146
 msgid "yyyy-mm-dd h:i"
 msgstr ""
 
-#: wp-post-expires.php:149
+#: wp-post-expires.php:150
 msgid "Action"
 msgstr ""
 
-#: wp-post-expires.php:152
-#: wp-post-expires.php:218
+#: wp-post-expires.php:153
+#: wp-post-expires.php:215
 msgid "Add Prefix"
 msgstr ""
 
-#: wp-post-expires.php:153
-#: wp-post-expires.php:219
+#: wp-post-expires.php:154
+#: wp-post-expires.php:216
 msgid "Move to drafts"
 msgstr ""
 
-#: wp-post-expires.php:154
-#: wp-post-expires.php:220
+#: wp-post-expires.php:155
+#: wp-post-expires.php:217
 msgid "Move to trash"
 msgstr ""
 
-#: wp-post-expires.php:160
+#: wp-post-expires.php:161
 msgid "Prefix"
 msgstr ""
 
-#: wp-post-expires.php:162
+#: wp-post-expires.php:163
 msgid "Prefix for post title"
 msgstr ""
 
@@ -78,10 +79,10 @@ msgstr ""
 msgid "Default Expired Item Prefix"
 msgstr ""
 
-#: wp-post-expires.php:226
+#: wp-post-expires.php:223
 msgid "Enter the text you would like prepended to expired items."
 msgstr ""
 
-#: wp-post-expires.php:280
+#: wp-post-expires.php:275
 msgid "never"
 msgstr ""

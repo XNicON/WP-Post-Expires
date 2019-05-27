@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class XNPostExpires {
     private $plugin_version = '1.2.3';
     private $url_assets;
+    private static $timezone;
     public $settings = [];
 
     public static function init() {
@@ -77,7 +78,7 @@ class XNPostExpires {
         }
 
         if(!isset($settings_load['prefix'])) {
-            $settings_load['prefix'] = __('Expired:', 'wp-post-expires');
+            $settings_load['prefix'] = __('Expired', 'wp-post-expires') . ':';
         }else{
             $settings_load['prefix'] = esc_attr($settings_load['prefix']);
         }
@@ -189,7 +190,6 @@ class XNPostExpires {
     }
 
     public function registerSettings() {
-
         register_setting('reading', 'xn_wppe_settings');
 
         add_settings_section("xn_wppe_section", __('Settings posts expires', 'wp-post-expires'), null, 'reading');
@@ -200,10 +200,7 @@ class XNPostExpires {
     }
 
     public function settingsFieldPosttype() {
-        $all_post_types = get_post_types(false, 'objects');
-        unset($all_post_types['nav_menu_item']);
-        unset($all_post_types['revision']);
-        unset($all_post_types['attachment']);
+        $all_post_types = get_post_types(['public' => true], 'objects');
 
         foreach($all_post_types as $post_type => $post_type_obj) {
             echo '<label>';
@@ -238,36 +235,34 @@ class XNPostExpires {
         return $classes;
     }
 
+    public function addPostState($post_states, $post) {
+        $post_states[] = __('Expired', 'wp-post-expires');
+        return $post_states;
+    }
+
     public function expiredPost($post) {
-        $post_id = $post->ID;
 
-        if(self::isExpired($post_id)) {
-
-            $expires_action = get_post_meta($post_id, 'xn-wppe-expiration-action', true);
+        if(self::isExpired($post->ID)) {
+            $expires_action = get_post_meta($post->ID, 'xn-wppe-expiration-action', true);
             $action = !empty($expires_action)? $expires_action : $this->settings['action'];
 
-            switch($action) {
-                case 'add_prefix':
-                    add_filter('the_title', [$this, 'textTitleFilter'], 10, 2);
-                    add_filter('post_class', [$this, 'cssClassFilter']);
-                break;
-                case 'to_drafts':
-                    remove_action('save_post', [$this, 'saveBoxFields']);
-                    wp_update_post(['ID' => $post_id, 'post_status' => 'draft']);
-                    update_post_meta($post_id, 'xn-wppe-expiration-action', 'add_prefix');
-                    update_post_meta($post_id, 'xn-wppe-expiration-prefix', $this->settings['prefix']);
-                    add_action('save_post', [$this, 'saveBoxFields']);
-                break;
-                case 'to_trash':
-                    remove_action('save_post', [$this, 'saveBoxFields']);
-                    $del_post = wp_trash_post($post_id);
-                    //check post to trash, or deleted
-                    if($del_post !== false) {
-                        update_post_meta($post_id, 'xn-wppe-expiration-action', 'add_prefix');
-                        update_post_meta($post_id, 'xn-wppe-expiration-prefix', $this->settings['prefix']);
-                    }
-                    add_action('save_post', [$this, 'saveBoxFields']);
-                break;
+            if ($action == 'add_prefix') {
+
+                add_filter('the_title', [$this, 'textTitleFilter'], 10, 2);
+                add_filter('post_class', [$this, 'cssClassFilter']);
+
+            } elseif (!in_array($post->post_status, ['draft', 'trash'])) {
+                remove_action('save_post', [$this, 'saveBoxFields']);
+
+                if ($action == 'to_drafts') {
+                    wp_update_post(['ID' => $post->ID, 'post_status' => 'draft']);
+                } elseif($action == 'to_trash') {
+                    wp_trash_post($post->ID);
+                }
+
+                add_action('save_post', [$this, 'saveBoxFields']);
+            } else {
+                add_filter('display_post_states', [$this, 'addPostState'], 10, 2);
             }
         }
     }
@@ -285,14 +280,36 @@ class XNPostExpires {
 
         if(!empty($expires)) {
             $current = new DateTime();
-            $current->setTimestamp(current_time('timestamp'));
-            $expiration = DateTime::createFromFormat('Y-m-d H:i', $expires);
+            $current->setTimezone( self::getWpTimezone() );
 
-            if($expiration && $expiration->format('Y-m-d H:i') == $expires && $current >= $expiration) {
+            $expiration = DateTime::createFromFormat('Y-m-d H:i', $expires,
+                self::getWpTimezone());
+
+            if($expiration
+                && $expiration->format('Y-m-d H:i') == $expires
+                && $current >= $expiration) {
                 return true;
             }
         }
+
         return false;
     }
+
+    private static function getWpTimezone() {
+        if (!empty(self::$timezone)) {
+            return self::$timezone;
+        }
+
+        $timezone_string = get_option( 'timezone_string' );
+        if (!empty($timezone_string)) {
+            return self::$timezone = new DateTimeZone($timezone_string);
+        }
+        $offset  = get_option( 'gmt_offset' );
+        $hours   = (int) $offset;
+        $minutes = abs( ( $offset - (int) $offset ) * 60 );
+        $offset  = sprintf( '%+03d:%02d', $hours, $minutes );
+        return self::$timezone = new DateTimeZone($offset);
+    }
+
 }
 add_action('plugins_loaded', ['XNPostExpires','init']);
