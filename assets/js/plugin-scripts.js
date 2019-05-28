@@ -2,7 +2,7 @@
     let el = wp.element.createElement;
     function Component() {
         let meta = wp.data.select('core/editor').getEditedPostAttribute('meta');
-        if(meta['xn-wppe-expiration'].length > 0) {
+        if(meta && meta['xn-wppe-expiration'].length > 0) {
             return el(wp.element.Fragment, {},
                 el(wp.editPost.PluginPostStatusInfo, null, [
                         el('label', null, wp.i18n.__('Expires', 'wp-post-expires')),

@@ -50,15 +50,17 @@ class XNPostExpires {
         }
 
         if(current_user_can('edit_posts')) {
-            add_action('admin_init', [$this, 'gutenbergOrClassic']);
+            add_action('admin_enqueue_scripts', [$this, 'gutenbergOrClassic']);
 
             add_action('add_meta_boxes', [$this, 'addMetaBox']);
             add_action('save_post', [$this, 'saveBoxFields']);
         }
 
-        register_meta('post', 'xn-wppe-expiration', ['show_in_rest' => true]);
-        register_meta('post', 'xn-wppe-expiration-action', ['show_in_rest' => true]);
-        register_meta('post', 'xn-wppe-expiration-prefix', ['show_in_rest' => true]);
+        foreach (array_keys($this->settings['post_types']) as $type) {
+            register_meta($type, 'xn-wppe-expiration', ['show_in_rest' => true]);
+            register_meta($type, 'xn-wppe-expiration-action', ['show_in_rest' => true]);
+            register_meta($type, 'xn-wppe-expiration-prefix', ['show_in_rest' => true]);
+        }
     }
 
     private function getSettings() {
@@ -70,7 +72,6 @@ class XNPostExpires {
 
         if(!isset($settings_load['post_types'])) {
             $settings_load['post_types']['post'] = 1;
-            $settings_load['post_types']['page'] = 0;
         }
 
         if(!isset($settings_load['action'])) {
@@ -86,11 +87,18 @@ class XNPostExpires {
         return $settings_load;
     }
 
-    public function gutenbergOrClassic() {
-        if(!is_plugin_active('classic-editor/classic-editor.php')) {
-            add_action('enqueue_block_editor_assets', [$this, 'loadScripts']);
-        } elseif(is_admin()) {
-            $this->loadScriptsClassic();
+    public function gutenbergOrClassic( $hook ) {
+        global $post;
+
+        if (($hook == 'post-new.php' || $hook == 'post.php')
+            && in_array($post->post_type, array_keys($this->settings['post_types']))) {
+
+            if(use_block_editor_for_post($post->ID)) {
+                $this->loadScripts();
+            } else {
+                $this->loadScriptsClassic();
+            }
+
         }
     }
 
