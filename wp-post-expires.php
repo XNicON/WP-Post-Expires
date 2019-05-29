@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Post Expires
 Description: A simple plugin allow to set the posts, the time after which will be performed one of 3 actions: "Add prefix to title", "Move to drafts", "Move to trash".
-Version:     1.2.3
+Version:     1.2.4
 Author:      XNicON
 Author URI:  https://xnicon.ru
 License:     GPL2
@@ -27,10 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 class XNPostExpires {
-    private $plugin_version = '1.2.3';
+    private $plugin_version = '1.2.4';
     private $url_assets;
     private static $timezone;
-    public $settings = [];
+    private $settings = [];
 
     public static function init() {
         return new self;
@@ -45,11 +45,11 @@ class XNPostExpires {
 
         add_action('the_post', [$this, 'expiredPost']);
 
-        if(current_user_can('manage_options')) {
+        if (current_user_can('manage_options')) {
             add_action('admin_init', [$this, 'registerSettings']);
         }
 
-        if(current_user_can('edit_posts')) {
+        if (current_user_can('edit_posts')) {
             add_action('admin_enqueue_scripts', [$this, 'gutenbergOrClassic']);
 
             add_action('add_meta_boxes', [$this, 'addMetaBox']);
@@ -93,12 +93,11 @@ class XNPostExpires {
         if (($hook == 'post-new.php' || $hook == 'post.php')
             && in_array($post->post_type, array_keys($this->settings['post_types']))) {
 
-            if(use_block_editor_for_post($post->ID)) {
+            if (use_block_editor_for_post($post->ID)) {
                 $this->loadScripts();
             } else {
                 $this->loadScriptsClassic();
             }
-
         }
     }
 
@@ -119,15 +118,9 @@ class XNPostExpires {
     }
 
     public function addMetaBox() {
-        add_meta_box('xn_box_expiration',
-            __('Expires', 'wp-post-expires'),
-            [$this, 'addBoxFields'],
-            array_keys($this->settings['post_types']),
-            'side',
-            'default',
-            [
-                '__back_compat_meta_box' => false
-            ]
+        add_meta_box('xn_box_expiration', __('Expires', 'wp-post-expires'),
+            [$this, 'addBoxFields'], array_keys($this->settings['post_types']),
+            'side', 'default', ['__back_compat_meta_box' => false]
         );
     }
 
@@ -151,7 +144,7 @@ class XNPostExpires {
 
         <div class="components-panel__row">
             <div><?php _e('DateTime', 'wp-post-expires'); ?></div>
-            <div><input type="text" name="xn-wppe-expiration" id="xn-wppe-datetime" style="width:100%" value="<?php echo $date; ?>" placeholder="<?php _e('yyyy-mm-dd h:i','wp-post-expires'); ?>"></div>
+            <div><input type="text" name="xn-wppe-expiration" id="xn-wppe-datetime" style="width:100%" value="<?php echo $date; ?>" placeholder="<?php _e('yyyy-mm-dd h:i', 'wp-post-expires'); ?>"></div>
         </div>
 
         <div class="components-panel__row">

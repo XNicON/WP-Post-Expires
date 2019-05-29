@@ -8,7 +8,8 @@
                         el('label', null, wp.i18n.__('Expires', 'wp-post-expires')),
                         el('div', null, [
                             el(wp.components.Dashicon, {icon: 'clock', className: 'xn-clock-icon'}, null),
-                            wp.date.dateI18n(wp.date.__experimentalGetSettings()['formats']['datetime'], meta['xn-wppe-expiration'])
+                            wp.date.dateI18n(wp.date.__experimentalGetSettings()['formats']['datetime'],
+                                meta['xn-wppe-expiration'] + ':00')
                         ])
                     ]
                 )

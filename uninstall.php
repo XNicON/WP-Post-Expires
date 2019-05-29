@@ -1,7 +1,7 @@
 <?php
 
 if(!defined('WP_UNINSTALL_PLUGIN')) {
-  exit();
+  exit;
 }
 
 delete_option('xn_wppe_settings');

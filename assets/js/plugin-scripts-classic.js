@@ -27,26 +27,3 @@ jQuery(function($) {
 		}
 	});
 });
-
-/* FUTURE
-( function( wp ) {
-    let el = wp.element.createElement;
-    function Component() {
-        let meta = wp.data.select('core/editor').getEditedPostAttribute('meta');
-        if(meta['xn-wppe-expiration'].length > 0) {
-            return el(wp.element.Fragment, {},
-                el(wp.editPost.PluginPostStatusInfo, {},
-                    wp.i18n.__('Expires', 'wp-post-expires') + ' ' + meta['xn-wppe-expiration'],
-                )
-            );
-        }
-
-        return '';
-    }
-
-    wp.plugins.registerPlugin('xn-wppe', {
-        render: Component
-    });
-
-} )( window.wp );
-*/
