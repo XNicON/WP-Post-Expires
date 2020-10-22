@@ -265,6 +265,10 @@ class XNPostExpires {
             } else {
                 add_filter('display_post_states', [$this, 'addPostState'], 10, 2);
             }
+        } else {
+            remove_filter('the_title', [$this, 'textTitleFilter'], 10, 2);
+            remove_filter('post_class', [$this, 'cssClassFilter']);
+            remove_filter('display_post_states', [$this, 'addPostState'], 10, 2);
         }
     }
 
